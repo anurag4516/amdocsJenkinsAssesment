@@ -9,7 +9,13 @@ pipeline
     stages
     {
         
-        stage('Checkout external proj')
+       stage('Checkout Main Project')
+       {
+         steps{
+           checkout scm;
+         }
+       }
+       stage('Checkout external Hellow-world proj')
         {
        
             // I have configured credentials in Jenkins with its id as anurag4516 & set password
@@ -33,6 +39,7 @@ pipeline
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                     mvn clean package
+                    sh "ls -lat"
                    
                 '''
             }
